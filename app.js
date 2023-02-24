@@ -4,14 +4,6 @@ const app = express();
 const Thing = require('./models/thing');
 require('dotenv').config()
 console.log(process.env.USER);
-// mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@${process.env.MONGO_DB_ACCESS}`,
-
-//     {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true
-//     })
-//     .then(() => console.log('Connexion à MongoDB réussie !'))
-//     .catch((e) => console.log(`mongodb+srv://${process.env.USER1}:${process.env.PASSWORD}@${process.env.MONGO_DB_ACCESS}`) + e);
 
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -22,16 +14,6 @@ client.connect(err => {
     // perform actions on the collection object
     client.close();
 });
-
-
-
-// mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@${process.env.MONGO_DB_ACCESS}`,
-//     {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true
-//     })
-//     .then(() => console.log('Connexion à MongoDB réussie !'))
-//     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
 app.use(express.json());
@@ -76,3 +58,27 @@ app.use('/api/stuff', (req, res, next) => {
 
 module.exports = app;
 
+
+
+
+
+// mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@${process.env.MONGO_DB_ACCESS}`,
+
+//     {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true
+//     })
+//     .then(() => console.log('Connexion à MongoDB réussie !'))
+//     .catch((e) => console.log(`mongodb+srv://${process.env.USER1}:${process.env.PASSWORD}@${process.env.MONGO_DB_ACCESS}`) + e);
+
+
+
+
+
+// mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@${process.env.MONGO_DB_ACCESS}`,
+//     {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true
+//     })
+//     .then(() => console.log('Connexion à MongoDB réussie !'))
+//     .catch(() => console.log('Connexion à MongoDB échouée !'));
