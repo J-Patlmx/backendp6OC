@@ -26,7 +26,7 @@ mongoose.connect(`mongodb+srv://${process.env.USER1}:${process.env.PASSWORD}@${p
 app.use(express.json());
 
 // app.use('/api/stuff', stuffRoutes);
-app.use('/api/auth', userRoutes);
+// app.use('/api/auth', userRoutes);
 
 
 // middleware general pour toute les routes
