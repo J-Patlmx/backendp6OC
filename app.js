@@ -15,7 +15,7 @@ mongoose.connect(`mongodb+srv://${process.env.USER1}:${process.env.PASSWORD}@${p
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-// mongoose.connect('mongodb+srv://JPLmx:7tQYRZ0736ZVaJOc@clusterjplmx.ljicgum.mongodb.net/piiquante?retryWrites=true&w=majority',
+// mongoose.connect('mongodb+srv://password@clusterjplmx.ljicgum.mongodb.net/piiquante?retryWrites=true&w=majority',
 //     {
 //         useNewUrlParser: true,
 //         useUnifiedTopology: true
