@@ -15,13 +15,7 @@ mongoose.connect(`mongodb+srv://${process.env.USER1}:${process.env.PASSWORD}@${p
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-// mongoose.connect('mongodb+srv://password@clusterjplmx.ljicgum.mongodb.net/piiquante?retryWrites=true&w=majority',
-//     {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true
-//     })
-//     .then(() => console.log('Connexion à MongoDB réussie !'))
-//     .catch(() => console.log('Connexion à MongoDB échouée !'));
+
 
 app.use(express.json());
 
@@ -38,7 +32,7 @@ app.use((req, res, next) => {
 });
 
 //route post Sauce
-app.post('/api/stuff', (req, res, next) => {
+app.post('/api/sauces', (req, res, next) => {
     delete req.body._id;
     const sauces = new Sauces({
         ...req.body
@@ -48,8 +42,33 @@ app.post('/api/stuff', (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 });
 
+//route update Sauce
+app.put('/api/sauces/:id', (req, res, next) => {
+    Sauces.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+        .then(() => res.status(200).json({ message: 'sauce modifié !' }))
+        .catch(error => res.status(400).json({ error }));
+});
+
+//route delete Sauce
+app.delete('/api/sauces/:id', (req, res, next) => {
+    Sauces.deleteOne({ _id: req.params.id })
+        .then(() => res.status(200).json({ message: 'sauce supprimé !' }))
+        .catch(error => res.status(400).json({ error }));
+});
+
+// route get Sauce
+app.get('/api/sauces/:id', (req, res, next) => {
+    Sauces.findOne({ _id: req.params.id })
+        .then(sauces => res.status(200).json(sauces))
+        .catch(error => res.status(404).json({ error }));
+});
+
+
+//TODO:USERS WIP
+
+
 //route post users
-app.post('/api/stuff', (req, res, next) => {
+app.post('/api/sauces', (req, res, next) => {
     delete req.body._id;
     const users = new Users({
         ...req.body
@@ -60,43 +79,22 @@ app.post('/api/stuff', (req, res, next) => {
 });
 
 
-//route update Sauce
-app.put('/api/stuff/:id', (req, res, next) => {
-    Sauces.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-        .then(() => res.status(200).json({ message: 'sauce modifié !' }))
-        .catch(error => res.status(400).json({ error }));
-});
-
 //route update users
-app.put('/api/stuff/:id', (req, res, next) => {
+app.put('/api/sauces/:id', (req, res, next) => {
     Users.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
         .then(() => res.status(200).json({ message: 'users modifié !' }))
         .catch(error => res.status(400).json({ error }));
 });
 
-//route delete Sauce
-app.delete('/api/stuff/:id', (req, res, next) => {
-    Sauces.deleteOne({ _id: req.params.id })
-        .then(() => res.status(200).json({ message: 'sauce supprimé !' }))
-        .catch(error => res.status(400).json({ error }));
-});
-
 //route delete users
-app.delete('/api/stuff/:id', (req, res, next) => {
+app.delete('/api/sauces/:id', (req, res, next) => {
     Users.deleteOne({ _id: req.params.id })
         .then(() => res.status(200).json({ message: 'user supprimé !' }))
         .catch(error => res.status(400).json({ error }));
 });
 
-// route get Sauce
-app.get('/api/stuff/:id', (req, res, next) => {
-    Sauces.findOne({ _id: req.params.id })
-        .then(sauces => res.status(200).json(sauces))
-        .catch(error => res.status(404).json({ error }));
-});
-
 // route get users
-app.get('/api/stuff/:id', (req, res, next) => {
+app.get('/api/sauces/:id', (req, res, next) => {
     Users.findOne({ _id: req.params.id })
         .then(users => res.status(200).json(users))
         .catch(error => res.status(404).json({ error }));
