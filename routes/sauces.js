@@ -17,6 +17,7 @@ router.get('/:id', saucesCtrl.getOneThing)
 // route getAll
 router.use('/', saucesCtrl.getAllThing)
 
+// router.post('/', saucesCtrl.getAllThing)
 
 
 module.exports = router;
