@@ -1,9 +1,9 @@
-const Thing = require('../models/Sauce');
+const Sauce = require('../models/Sauce');
 
 //route post
 exports.createSauce = (req, res, next) => {
     delete req.body._id;
-    const thing = new Thing({
+    const sauce = new sauce({
         ...req.body
     });
     sauce.save()
