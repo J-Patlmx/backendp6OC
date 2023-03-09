@@ -1,7 +1,15 @@
 const mongoose = require('mongoose');
 
 const saucesSchema = mongoose.Schema({
-    title: {
+    userId: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    manufacturer: {
         type: String,
         required: true
     },
@@ -9,13 +17,37 @@ const saucesSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    mainPepper: {
+        type: String,
+        required: true
+    },
     imageUrl: {
         type: String,
         required: true
     },
-    userId: {
-        type: String,
+    heat: {
+        type: Number,
         required: true
+    },
+    like: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    dislike: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    usersLiked: {
+        type: [String],
+        required: true,
+        default: []
+    },
+    usersDisliked: {
+        type: [String],
+        required: true,
+        default: []
     },
 });
 
