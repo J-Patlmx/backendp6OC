@@ -18,10 +18,9 @@ router.delete('/:id', auth, saucesCtrl.deleteSauce);
 router.get('/:id', auth, saucesCtrl.getOneSauce);
 
 // route getAll
-router.use('/', auth, saucesCtrl.getAllSauce);
+router.get('/', auth, saucesCtrl.getAllSauce);
 
-// router.post('/', saucesCtrl.getAllThing)
-
+// router.post
 
 router.post('/:id/like', auth, saucesCtrl.rateSauce);
 
