@@ -1,6 +1,7 @@
 // Importation des modules nécessaires
 const mongoose = require('mongoose');
 const validator = require('validator');
+const uniqueValidator = require('mongoose-unique-validator');
 
 // Définition du schéma de la collection 'users' dans la base de données
 const usersSchema = mongoose.Schema({
@@ -15,7 +16,7 @@ const usersSchema = mongoose.Schema({
         required: true // L'attribut 'password' est obligatoire
     }
 });
-
+usersSchema.plugin(uniqueValidator);
 // Exportation du modèle 'Users' basé sur le schéma défini ci-dessus
 module.exports = mongoose.model('Users', usersSchema);
 

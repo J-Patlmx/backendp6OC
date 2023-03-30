@@ -114,7 +114,7 @@ exports.rateSauce = (req, res, next) => {
     if (like === -1) { // Si l'utilisateur a noté la sauce avec un "je n'aime pas"
         Sauce.updateOne({ _id: sauceId }, // On récupère la sauce correspondante
             {
-                $inc: { dislike: +1 }, // On incrémente les dislikes de +1
+                $inc: { dislikes: +1 }, // On incrémente les dislikes de +1
                 $push: { usersDisliked: userId } // On ajoute l'id de l'utilisateur dans le tableau des utilisateurs qui n'ont pas aimé la sauce
             })
             .then(() => res.status(201).json({ message: "Vous avez n'avez pas aimé cette sauce !" }))// Si la mise à jour s'est effectuée avec succès, retourne un message de confirmation

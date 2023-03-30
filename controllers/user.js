@@ -2,7 +2,9 @@
 const bcrypt = require('bcrypt'); // Module pour le hashage des mots de passe
 const User = require('../models/users');// Le modèle User pour la base de données
 const jwt = require('jsonwebtoken');// Module pour générer des tokens d'authentification
-
+const handleErrors = (err) => {
+    console.log(err.message, err.code);
+};
 // Fonction pour créer un nouvel utilisateur
 
 exports.signup = (req, res, next) => {
