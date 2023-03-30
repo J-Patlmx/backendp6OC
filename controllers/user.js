@@ -8,7 +8,7 @@ const handleErrors = (err) => {
 // Fonction pour créer un nouvel utilisateur
 
 exports.signup = (req, res, next) => {
-    console.log('test');
+
     // Expression régulière pour valider le format du mot de passe (au moins 8 caractères, une lettre en capitale, un chiffre)
     const isPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
     try {
