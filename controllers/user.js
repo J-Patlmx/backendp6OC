@@ -1,10 +1,10 @@
 // Importation des modules nécessaires
-const bcrypt = require('bcrypt'); // Module pour le hashage des mots de passe
-const User = require('../models/users');// Le modèle User pour la base de données
-const jwt = require('jsonwebtoken');// Module pour générer des tokens d'authentification
-const handleErrors = (err) => {
-    console.log(err.message, err.code);
-};
+const bcrypt = require('bcrypt');
+const User = require('../models/users');
+const jwt = require('jsonwebtoken');
+
+// const handleErrors = (err) => { return err;};
+
 // Fonction pour créer un nouvel utilisateur
 
 exports.signup = (req, res, next) => {
@@ -24,7 +24,7 @@ exports.signup = (req, res, next) => {
                     });
                     user.save()// Sauvegarde de l'utilisateur dans la base de données
                         .then(() => res.status(201).json({ message: 'Utilisateur crée !' }))
-                        .catch(error => res.status(400).json(handleErrors(error)));
+                        .catch(error => res.status(400).json({ message: 'Veuillez vérifier vos identifiants.' }));
                 })
                 .catch(error => res.status(500).json({ error }));
 
@@ -41,7 +41,8 @@ exports.signup = (req, res, next) => {
     }
     // Si une erreur se produit lors de la validation du mot de passe
     catch (err) {
-        return res.status(500).json(handleErrors(err))
+        return res.status(500).json(
+            { message: 'Erreur serveur, veuillez ressayer plus tard.' })
     }
 };
 
