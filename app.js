@@ -1,7 +1,7 @@
 // Importation des modules nécessaires
 const express = require('express');
+const helmet = require("helmet");
 const mongoose = require('mongoose');
-
 // Création de l'application Express
 const app = express();
 
@@ -26,6 +26,13 @@ mongoose.connect(`mongodb+srv://${process.env.USER1}:${process.env.PASSWORD}@${p
 
 // Middleware qui analyse le corps de toutes les requêtes entrantes sous format JSON
 app.use(express.json());
+
+
+app.use(helmet({
+    crossOriginResourcePolicy: false
+}));
+
+
 
 // Middleware qui ajoute des en-têtes de réponse pour autoriser l'accès à l'API depuis n'importe quelle origine
 app.use((req, res, next) => {
