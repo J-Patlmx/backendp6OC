@@ -24,14 +24,14 @@ exports.signup = (req, res, next) => {
                     });
                     user.save()// Sauvegarde de l'utilisateur dans la base de données
                         .then(() => res.status(201).json({ message: 'Utilisateur crée !' }))
-                        .catch(error => res.status(400).json({ message: 'Veuillez vérifier vos identifiants.' }));
+                        .catch(error => res.status(409).json({ message: 'Veuillez vérifier vos identifiants.' }));
                 })
                 .catch(error => res.status(500).json({ error }));
 
         }
         // Si le mot de passe ne correspond pas au format requis
         else {
-            res.status(401).json({
+            res.status(400).json({
                 message:
                     "votre mot de passe doit contenir entre 8 et 20 caractères, avec au moins 1 lettre en capitale et 1 chiffre",
             });
